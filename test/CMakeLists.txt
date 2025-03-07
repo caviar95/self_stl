@@ -8,8 +8,11 @@ set(PROJECT_ROOT_DIR ${CMAKE_SOURCE_DIR}/..)
 set(CMAKE_CXX_STANDARD 20)
 
 include_directories(${PROJECT_ROOT_DIR}/queue)
+include_directories(${PROJECT_ROOT_DIR}/thread)
 
 add_executable(stl_test 
-    ${PROJECT_ROOT_DIR}/test/queue/test_priority_queue.cpp)
+    ${PROJECT_ROOT_DIR}/test/queue/test_priority_queue.cpp
+    ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
+    )
 
 target_link_libraries(stl_test gtest gtest_main pthread)
