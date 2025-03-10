@@ -10,9 +10,17 @@ set(CMAKE_CXX_STANDARD 20)
 include_directories(${PROJECT_ROOT_DIR}/queue)
 include_directories(${PROJECT_ROOT_DIR}/thread)
 
+set(THREAD_POOL_WITH_PRI_FILES 
+    ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
+)
+
+set(THREAD_POOL_WITH_SCHED_FILES
+    ${PROJECT_ROOT_DIR}/test/thread/test_scheduler.cpp
+)
+
 add_executable(stl_test 
     ${PROJECT_ROOT_DIR}/test/queue/test_priority_queue.cpp
-    ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
-    )
+    ${THREAD_POOL_WITH_SCHED_FILES}
+)
 
 target_link_libraries(stl_test gtest gtest_main pthread)
