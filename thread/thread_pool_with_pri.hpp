@@ -1,5 +1,7 @@
 #pragma once
 
+#ifdef THREAD_POOL_WITH_PRI
+
 /*
     Thread Pool 通常包括：任务队列、工作线程、添加任务的接口。
     考虑优先级，需要额外的优先级队列。[使用stl的priority_queue实现, 注意线程安全]
@@ -177,7 +179,7 @@ private:
     bool stop;
 };
 
-
+#endif
 
 
 /*
