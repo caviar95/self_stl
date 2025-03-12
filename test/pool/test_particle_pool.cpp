@@ -12,8 +12,6 @@ TEST(ParticlePool, test1) {
         activeParticles.push_back(std::move(p));
     }
 
-    EXPECT
-
     // 更新粒子状态
     for (auto& p : activeParticles) {
         p->update();

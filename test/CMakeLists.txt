@@ -27,6 +27,8 @@ add_executable(stl_test
     ${PROJECT_ROOT_DIR}/test/data_struct/test_rbtree.cpp
     ${PROJECT_ROOT_DIR}/test/pool/test_object_pool.cpp
     ${PROJECT_ROOT_DIR}/test/pool/test_particle_pool.cpp
+    ${PROJECT_ROOT_DIR}/test/pool/test_mem_pool.cpp
+    ${PROJECT_ROOT_DIR}/test/pool/test_object_alloc_pool.cpp
     ${THREAD_POOL_WITH_SCHED_FILES}
 )
 
