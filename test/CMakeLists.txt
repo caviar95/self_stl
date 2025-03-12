@@ -7,9 +7,12 @@ link_directories(${CMAKE_SOURCE_DIR}/lib)
 set(PROJECT_ROOT_DIR ${CMAKE_SOURCE_DIR}/..)
 set(CMAKE_CXX_STANDARD 20)
 
+add_definitions(-DOBJECT_POOL_MIN_MAX_SIZE)
+
 include_directories(${PROJECT_ROOT_DIR}/queue)
 include_directories(${PROJECT_ROOT_DIR}/thread)
 include_directories(${PROJECT_ROOT_DIR}/data_struct)
+include_directories(${PROJECT_ROOT_DIR}/pool)
 
 set(THREAD_POOL_WITH_PRI_FILES 
     ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
@@ -22,6 +25,8 @@ set(THREAD_POOL_WITH_SCHED_FILES
 add_executable(stl_test 
     ${PROJECT_ROOT_DIR}/test/queue/test_priority_queue.cpp
     ${PROJECT_ROOT_DIR}/test/data_struct/test_rbtree.cpp
+    ${PROJECT_ROOT_DIR}/test/pool/test_object_pool.cpp
+    ${PROJECT_ROOT_DIR}/test/pool/test_particle_pool.cpp
     ${THREAD_POOL_WITH_SCHED_FILES}
 )
 
