@@ -29,6 +29,7 @@ add_executable(stl_test
     ${PROJECT_ROOT_DIR}/test/pool/test_particle_pool.cpp
     ${PROJECT_ROOT_DIR}/test/pool/test_mem_pool.cpp
     ${PROJECT_ROOT_DIR}/test/pool/test_object_alloc_pool.cpp
+    ${PROJECT_ROOT_DIR}/test/pool/test_mem_pool_base.cpp
     ${THREAD_POOL_WITH_SCHED_FILES}
 )
 

@@ -22,7 +22,6 @@ placement new	在预分配内存上直接构造对象，避免默认 new 的额�
 #include <new>
 #include <vector>
 
-// ============================== 内存池核心模板 ==============================
 template <typename T>
 class ObjectPool {
 private:
