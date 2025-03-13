@@ -9,10 +9,15 @@ set(CMAKE_CXX_STANDARD 20)
 
 add_definitions(-DOBJECT_POOL_MIN_MAX_SIZE)
 
+if(NOT CMAKE_BUILD_TYPE)
+  set(CMAKE_BUILD_TYPE Debug)
+endif()
+
 include_directories(${PROJECT_ROOT_DIR}/queue)
 include_directories(${PROJECT_ROOT_DIR}/thread)
 include_directories(${PROJECT_ROOT_DIR}/data_struct)
 include_directories(${PROJECT_ROOT_DIR}/pool)
+include_directories(${PROJECT_ROOT_DIR}/utility)
 
 set(THREAD_POOL_WITH_PRI_FILES 
     ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
@@ -30,6 +35,7 @@ add_executable(stl_test
     ${PROJECT_ROOT_DIR}/test/pool/test_mem_pool.cpp
     ${PROJECT_ROOT_DIR}/test/pool/test_object_alloc_pool.cpp
     ${PROJECT_ROOT_DIR}/test/pool/test_mem_pool_base.cpp
+    ${PROJECT_ROOT_DIR}/test/pool/test_fixed_pool.cpp
     ${THREAD_POOL_WITH_SCHED_FILES}
 )
 

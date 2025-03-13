@@ -6,18 +6,20 @@
 #include <new>
 #include <mutex>
 
-// 内存池基类
-class MemoryPoolBase {
-protected:
+// 模板化内存池（支持任意类型 T）
+template <typename T>
+class MemoryPool {
+private:
     // 内存块结构（嵌入式指针优化）
     struct Block {
         Block* next;
+        alignas(T) unsigned char data[sizeof(T)]; // 内存对齐
     };
 
-    std::vector<Block*> blocks_; // 所有内存块（用于析构时释放）
-    Block* free_list_ = nullptr; // 空闲链表头
-    size_t block_size_;          // 每个块的大小
-    size_t chunk_size_;          // 每次扩展的块数量
+    std::vector<Block*> blocks_;  // 所有内存块（用于析构时释放）
+    Block* free_list_ = nullptr;  // 空闲链表头
+    size_t chunk_size_;           // 每次扩展的块数量
+    const size_t block_size_ = sizeof(Block); // 固定为 Block 结构大小
 
     // 扩展内存池容量
     void expand(size_t num_blocks) {
@@ -36,35 +38,36 @@ protected:
         }
     }
 
-    // 构造函数（仅允许派生类调用）
-    MemoryPoolBase(size_t block_size, size_t chunk_size = 64)
-        : block_size_(block_size), chunk_size_(chunk_size) {
+public:
+    // 构造函数
+    explicit MemoryPool(size_t chunk_size = 64) : chunk_size_(chunk_size) {
         expand(chunk_size_);
     }
 
-public:
-    virtual ~MemoryPoolBase() {
+    // 析构函数
+    ~MemoryPool() {
         for (auto block : blocks_) {
             std::free(block);
         }
     }
 
     // 分配内存
-    void* allocate() {
+    T* allocate() {
         if (!free_list_) {
             expand(chunk_size_); // 动态扩容
         }
 
         Block* block = free_list_;
         free_list_ = free_list_->next;
-        return static_cast<void*>(block);
+        return reinterpret_cast<T*>(&block->data); // 返回数据区地址
     }
 
     // 释放内存
-    void deallocate(void* p) {
+    void deallocate(T* p) {
         if (!p) return;
 
-        Block* block = static_cast<Block*>(p);
+        // 计算块地址（通过指针偏移）
+        Block* block = reinterpret_cast<Block*>(reinterpret_cast<char*>(p) - offsetof(Block, data));
         block->next = free_list_;
         free_list_ = block;
     }
