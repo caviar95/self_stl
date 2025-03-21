@@ -36,3 +36,36 @@ int QuickSelect(std::vector<int>& nums, int left, int right, int k)
 
     return QuickSelect(nums, r + 1, right, k);
 }
+
+#include <vector>
+
+int QuickSelectDecrease(std::vector<int>& nums, int left, int right, int k)
+{
+    if (left == right) {
+        return nums[left];
+    }
+
+    int pivot = nums[left];
+    int l = left - 1;
+    int r = right + 1;
+
+    while (l < r) {
+        do {
+            l++;
+        } while (nums[l] > pivot);
+
+        do {
+            r--;
+        } while (nums[r] < pivot);
+
+        if (l < r) {
+            std::swap(nums[l], nums[r]);
+        }
+    }
+
+    if (k <= r) {
+        return QuickSelectDecrease(nums, left, r, k);
+    }
+
+    return QuickSelectDecrease(nums, r + 1, right, k);
+}
