@@ -20,6 +20,7 @@ include_directories(${PROJECT_ROOT_DIR}/pool)
 include_directories(${PROJECT_ROOT_DIR}/utility)
 include_directories(${PROJECT_ROOT_DIR}/design/mode/observer)
 include_directories(${PROJECT_ROOT_DIR}/design/mode/states)
+include_directories(${PROJECT_ROOT_DIR}/design/mode/command)
 
 set(THREAD_POOL_WITH_PRI_FILES 
     ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
@@ -40,7 +41,9 @@ add_executable(stl_test
     # ${PROJECT_ROOT_DIR}/test/pool/test_fixed_pool.cpp
     ${PROJECT_ROOT_DIR}/test/design/test_observer_mode.cpp
     ${PROJECT_ROOT_DIR}/test/design/test_states_mode.cpp
+    ${PROJECT_ROOT_DIR}/test/design/test_command_mode.cpp
+    ${PROJECT_ROOT_DIR}/test/db/test_db.cpp
     # ${THREAD_POOL_WITH_SCHED_FILES}
 )
 
-target_link_libraries(stl_test gtest gtest_main pthread)
+target_link_libraries(stl_test gtest gtest_main gmock pthread)
