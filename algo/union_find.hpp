@@ -1,7 +1,8 @@
 #pragma once
 
 #include <vector>
-// #include <ranges>
+#include <ranges>
+#include <numeric>
 
 class UnionFind {
 private:
@@ -11,11 +12,12 @@ private:
 public:
 
     UnionFind(int n) : fa(n), cnt(n) {
-        // std::ranges::iota(fa, 0);
+        // 非C++标准库函数，导致编译报错。
+        std::ranges::iota(fa, 0);
 
-        for (int i = 0; i < n; ++i) {
-            fa[i] = i;
-        }
+        // for (int i = 0; i < n; ++i) {
+        //     fa[i] = i;
+        // }
     }
 
     int find(int x) {
