@@ -1,5 +1,17 @@
-import math;                 // 导入模块 ‌:ml-citation{ref="1,4" data="citationList"}
+import math;
+
+import <iostream>;
+
+
 int main() { 
-    return add(1, 2); 
+
+    int num1 = 5;
+    int num2 = 10;
+
+    std::cout << "sum result: " << add(num1, num2) << std::endl;
+    std::cout << "subtraction result: " << subtract(num1, num2) << std::endl;
+    std::cout << "multiplication result: " << multiply(num1, num2) << std::endl;
+
+    return 0;
 }
 
