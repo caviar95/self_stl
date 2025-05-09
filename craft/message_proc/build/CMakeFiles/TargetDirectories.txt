@@ -1,0 +1,3 @@
+/home/river/Documents/code/self_stl/craft/message_proc/build/CMakeFiles/parser_test.dir
+/home/river/Documents/code/self_stl/craft/message_proc/build/CMakeFiles/edit_cache.dir
+/home/river/Documents/code/self_stl/craft/message_proc/build/CMakeFiles/rebuild_cache.dir

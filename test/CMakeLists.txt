@@ -13,6 +13,7 @@ if(NOT CMAKE_BUILD_TYPE)
   set(CMAKE_BUILD_TYPE Debug)
 endif()
 
+include_directories(${PROJECT_ROOT_DIR}/test/lib)
 include_directories(${PROJECT_ROOT_DIR}/queue)
 include_directories(${PROJECT_ROOT_DIR}/thread)
 include_directories(${PROJECT_ROOT_DIR}/data_struct)
@@ -39,10 +40,11 @@ add_executable(stl_test
     # ${PROJECT_ROOT_DIR}/test/pool/test_object_alloc_pool.cpp
     # ${PROJECT_ROOT_DIR}/test/pool/test_mem_pool_base.cpp
     # ${PROJECT_ROOT_DIR}/test/pool/test_fixed_pool.cpp
-    ${PROJECT_ROOT_DIR}/test/design/test_observer_mode.cpp
-    ${PROJECT_ROOT_DIR}/test/design/test_states_mode.cpp
-    ${PROJECT_ROOT_DIR}/test/design/test_command_mode.cpp
-    ${PROJECT_ROOT_DIR}/test/db/test_db.cpp
+    # ${PROJECT_ROOT_DIR}/test/design/test_observer_mode.cpp
+    # ${PROJECT_ROOT_DIR}/test/design/test_states_mode.cpp
+    # ${PROJECT_ROOT_DIR}/test/design/test_command_mode.cpp
+    # ${PROJECT_ROOT_DIR}/test/db/test_db.cpp
+    ${PROJECT_ROOT_DIR}/test/mem/test_allocator.cpp
     # ${THREAD_POOL_WITH_SCHED_FILES}
 )
 

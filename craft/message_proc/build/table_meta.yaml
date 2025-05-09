@@ -1,0 +1,32 @@
+OrderTable:
+  version: 2
+  endian: little
+  fields:
+    - name: order_id
+      type: uint32
+      offset: 0
+      length: 4
+      
+    - name: price
+      type: double
+      offset: 8
+      length: 8
+      
+    - name: symbol
+      type: string
+      offset: 16
+      length: 4
+
+UserTable:
+  version: 1
+  endian: big
+  fields:
+    - name: user_id
+      type: uint32
+      offset: 0
+      length: 4
+      
+    - name: username
+      type: string
+      offset: 4
+      length: 16

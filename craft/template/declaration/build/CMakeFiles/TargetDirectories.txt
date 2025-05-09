@@ -1,0 +1,3 @@
+/home/river/Documents/code/self_stl/craft/template/declaration/build/CMakeFiles/main.dir
+/home/river/Documents/code/self_stl/craft/template/declaration/build/CMakeFiles/edit_cache.dir
+/home/river/Documents/code/self_stl/craft/template/declaration/build/CMakeFiles/rebuild_cache.dir

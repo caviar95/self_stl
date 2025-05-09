@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/river/Documents/code/self_stl/build",
+  "command": "/usr/bin/g++ -DOBJECT_POOL_MIN_MAX_SIZE -I/home/river/Documents/code/self_stl/test/../test/lib -I/home/river/Documents/code/self_stl/test/../queue -I/home/river/Documents/code/self_stl/test/../thread -I/home/river/Documents/code/self_stl/test/../data_struct -I/home/river/Documents/code/self_stl/test/../pool -I/home/river/Documents/code/self_stl/test/../utility -I/home/river/Documents/code/self_stl/test/../design/mode/observer -I/home/river/Documents/code/self_stl/test/../design/mode/states -I/home/river/Documents/code/self_stl/test/../design/mode/command -g -std=gnu++20 -o CMakeFiles/stl_test.dir/mem/test_allocator.cpp.o -c /home/river/Documents/code/self_stl/test/mem/test_allocator.cpp",
+  "file": "/home/river/Documents/code/self_stl/test/mem/test_allocator.cpp",
+  "output": "CMakeFiles/stl_test.dir/mem/test_allocator.cpp.o"
+}
+]

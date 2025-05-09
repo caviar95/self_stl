@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/main.dir/a.cpp.o CMakeFiles/main.dir/b.cpp.o CMakeFiles/main.dir/my_template.cpp.o CMakeFiles/main.dir/main.cpp.o -o main 
