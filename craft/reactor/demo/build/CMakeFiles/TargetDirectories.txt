@@ -1,0 +1,3 @@
+/home/river/Code/self_stl/craft/reactor/demo/build/CMakeFiles/rebuild_cache.dir
+/home/river/Code/self_stl/craft/reactor/demo/build/CMakeFiles/edit_cache.dir
+/home/river/Code/self_stl/craft/reactor/demo/build/CMakeFiles/ReactorDemo.dir
