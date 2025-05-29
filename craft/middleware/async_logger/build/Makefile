@@ -123,6 +123,46 @@ test_logger/fast:
 	$(MAKE) -f CMakeFiles/test_logger.dir/build.make CMakeFiles/test_logger.dir/build
 .PHONY : test_logger/fast
 
+#=============================================================================
+# Target rules for targets named logger
+
+# Build rule for target.
+logger: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 logger
+.PHONY : logger
+
+# fast build rule for target.
+logger/fast:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/build
+.PHONY : logger/fast
+
+src/log_worker.o: src/log_worker.cpp.o
+
+.PHONY : src/log_worker.o
+
+# target to build an object file
+src/log_worker.cpp.o:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/src/log_worker.cpp.o
+.PHONY : src/log_worker.cpp.o
+
+src/log_worker.i: src/log_worker.cpp.i
+
+.PHONY : src/log_worker.i
+
+# target to preprocess a source file
+src/log_worker.cpp.i:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/src/log_worker.cpp.i
+.PHONY : src/log_worker.cpp.i
+
+src/log_worker.s: src/log_worker.cpp.s
+
+.PHONY : src/log_worker.s
+
+# target to generate assembly for a file
+src/log_worker.cpp.s:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/src/log_worker.cpp.s
+.PHONY : src/log_worker.cpp.s
+
 test/test_logger.o: test/test_logger.cpp.o
 
 .PHONY : test/test_logger.o
@@ -159,6 +199,10 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... edit_cache"
 	@echo "... test_logger"
+	@echo "... logger"
+	@echo "... src/log_worker.o"
+	@echo "... src/log_worker.i"
+	@echo "... src/log_worker.s"
 	@echo "... test/test_logger.o"
 	@echo "... test/test_logger.i"
 	@echo "... test/test_logger.s"

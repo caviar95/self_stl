@@ -1,0 +1,38 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/log_worker.hpp
+thread
+-
+atomic
+-
+condition_variable
+-
+string
+-
+queue
+-
+ring_buffer.hpp
+../include/ring_buffer.hpp
+
+../include/ring_buffer.hpp
+atomic
+-
+vector
+-
+optional
+-
+
+/home/river/Code/self_stl/craft/middleware/async_logger/src/log_worker.cpp
+log_worker.hpp
+/home/river/Code/self_stl/craft/middleware/async_logger/src/log_worker.hpp
+iostream
+-
+chrono
+-
+

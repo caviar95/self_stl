@@ -9,6 +9,8 @@
 #include <iostream>
 #include <iomanip>
 
+#include "log_worker.hpp"
+
 enum class LogLevel {
     INFO, WARN, ERROR,
 };
@@ -60,8 +62,10 @@ private:
     std::mutex mutex_;
 
     void LogImpl(LogLevel level, const std::string &msg) {
-        std::lock_guard<std::mutex> lk(mutex_);
-        std::cout << msg << std::endl;
+        // std::lock_guard<std::mutex> lk(mutex_);
+        // std::cout << msg << std::endl;
+
+        LogWorker::GetInstance().submitLog(msg);
     }
 
     std::string GetCurrentTimeStamp() {

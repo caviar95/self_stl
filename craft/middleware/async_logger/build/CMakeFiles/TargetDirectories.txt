@@ -1,3 +1,4 @@
 /home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles/rebuild_cache.dir
 /home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles/edit_cache.dir
 /home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles/test_logger.dir
+/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles/logger.dir

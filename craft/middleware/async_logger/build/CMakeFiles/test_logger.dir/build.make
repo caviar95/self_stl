@@ -79,6 +79,7 @@ test_logger_EXTERNAL_OBJECTS =
 
 test_logger: CMakeFiles/test_logger.dir/test/test_logger.cpp.o
 test_logger: CMakeFiles/test_logger.dir/build.make
+test_logger: liblogger.a
 test_logger: CMakeFiles/test_logger.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable test_logger"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/test_logger.dir/link.txt --verbose=$(VERBOSE)
