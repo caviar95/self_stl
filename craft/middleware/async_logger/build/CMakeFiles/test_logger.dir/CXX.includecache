@@ -1,0 +1,30 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/logger.hpp
+string
+-
+chrono
+-
+sstream
+-
+stdarg.h
+-
+mutex
+-
+thread
+-
+iostream
+-
+iomanip
+-
+
+/home/river/Code/self_stl/craft/middleware/async_logger/test/test_logger.cpp
+logger.hpp
+/home/river/Code/self_stl/craft/middleware/async_logger/test/logger.hpp
+
