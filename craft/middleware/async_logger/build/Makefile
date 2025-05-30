@@ -136,6 +136,33 @@ logger/fast:
 	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/build
 .PHONY : logger/fast
 
+src/log_config.o: src/log_config.cpp.o
+
+.PHONY : src/log_config.o
+
+# target to build an object file
+src/log_config.cpp.o:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/src/log_config.cpp.o
+.PHONY : src/log_config.cpp.o
+
+src/log_config.i: src/log_config.cpp.i
+
+.PHONY : src/log_config.i
+
+# target to preprocess a source file
+src/log_config.cpp.i:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/src/log_config.cpp.i
+.PHONY : src/log_config.cpp.i
+
+src/log_config.s: src/log_config.cpp.s
+
+.PHONY : src/log_config.s
+
+# target to generate assembly for a file
+src/log_config.cpp.s:
+	$(MAKE) -f CMakeFiles/logger.dir/build.make CMakeFiles/logger.dir/src/log_config.cpp.s
+.PHONY : src/log_config.cpp.s
+
 src/log_worker.o: src/log_worker.cpp.o
 
 .PHONY : src/log_worker.o
@@ -200,6 +227,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... test_logger"
 	@echo "... logger"
+	@echo "... src/log_config.o"
+	@echo "... src/log_config.i"
+	@echo "... src/log_config.s"
 	@echo "... src/log_worker.o"
 	@echo "... src/log_worker.i"
 	@echo "... src/log_worker.s"

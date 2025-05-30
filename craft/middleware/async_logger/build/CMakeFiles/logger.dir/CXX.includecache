@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+../include/log_config.h
+string
+-
+
 ../include/log_worker.hpp
 thread
 -
@@ -23,16 +27,20 @@ ring_buffer.hpp
 ../include/ring_buffer.hpp
 atomic
 -
-vector
--
-optional
+array
 -
 
 /home/river/Code/self_stl/craft/middleware/async_logger/src/log_worker.cpp
 log_worker.hpp
 /home/river/Code/self_stl/craft/middleware/async_logger/src/log_worker.hpp
+log_config.h
+/home/river/Code/self_stl/craft/middleware/async_logger/src/log_config.h
 iostream
 -
 chrono
+-
+fstream
+-
+vector
 -
 

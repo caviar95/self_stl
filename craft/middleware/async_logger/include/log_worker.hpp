@@ -7,6 +7,8 @@
 #include <queue>
 #include "ring_buffer.hpp"
 
+constexpr int RING_SIZE = 8192;
+
 class LogWorker {
 public:
     static LogWorker& GetInstance();
@@ -23,7 +25,7 @@ private:
 
     std::thread worker_;
     std::atomic<bool> running_;
-    RingBuffer<std::string> ring_;
+    MPSCRingBuffer<std::string, RING_SIZE> ring_;
     std::condition_variable cv_;
     std::mutex mtx_;
 };

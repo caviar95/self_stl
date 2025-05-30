@@ -1,4 +1,5 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/logger.dir/src/log_config.cpp.o"
   "CMakeFiles/logger.dir/src/log_worker.cpp.o"
   "liblogger.a"
   "liblogger.pdb"

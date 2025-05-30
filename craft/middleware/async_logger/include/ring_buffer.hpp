@@ -1,43 +1,44 @@
 #pragma once
 
 #include <atomic>
-#include <vector>
-#include <optional>
+#include <array>
 
-template <typename T>
-class RingBuffer {
+// MPSC（多生产单消费）环形缓冲区模板
+
+template<typename T, size_t N>
+class MPSCRingBuffer {
 public:
-    explicit RingBuffer(size_t capacity) : buffer_(capacity), capacity_(capacity), head_(0), tail_(0) {}
-
     bool push(const T& item) {
-        size_t head = head_.load(std::memory_order_relaxed);
-        size_t next = (head + 1) % capacity_;
-
-        if (next == tail_.load(std::memory_order_acquire)) {
-            return false;
-        }
+        size_t head, next;
+        do {
+            head = head_.load(std::memory_order_relaxed);
+            next = (head + 1) % N;
+            if (next == tail_.load(std::memory_order_acquire)) {
+                return false; // 满了
+            }
+        } while (!head_.compare_exchange_weak(head, next, std::memory_order_acq_rel));
 
         buffer_[head] = item;
-        head_.store(next, std::memory_order_release);
         return true;
     }
 
-    std::optional<T> pop() {
+    bool pop(T& item) {
         size_t tail = tail_.load(std::memory_order_relaxed);
         if (tail == head_.load(std::memory_order_acquire)) {
-            return std::nullopt;
+            return false; // 空
         }
 
-        T item = buffer_[tail];
-        tail_.store((tail + 1) % capacity_, std::memory_order_release);
+        item = buffer_[tail];
+        tail_.store((tail + 1) % N, std::memory_order_release);
+        return true;
+    }
 
-        return item;
+    bool empty() const {
+        return head_.load() == tail_.load();
     }
 
 private:
-    std::vector<T> buffer_;
-    size_t capacity_;
-    std::atomic<size_t> head_;
-    std::atomic<size_t> tail_;
+    std::array<T, N> buffer_;
+    std::atomic<size_t> head_{0};
+    std::atomic<size_t> tail_{0};
 };
-

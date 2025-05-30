@@ -57,9 +57,22 @@ include CMakeFiles/logger.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/logger.dir/flags.make
 
+CMakeFiles/logger.dir/src/log_config.cpp.o: CMakeFiles/logger.dir/flags.make
+CMakeFiles/logger.dir/src/log_config.cpp.o: ../src/log_config.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/logger.dir/src/log_config.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/logger.dir/src/log_config.cpp.o -c /home/river/Code/self_stl/craft/middleware/async_logger/src/log_config.cpp
+
+CMakeFiles/logger.dir/src/log_config.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/logger.dir/src/log_config.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/river/Code/self_stl/craft/middleware/async_logger/src/log_config.cpp > CMakeFiles/logger.dir/src/log_config.cpp.i
+
+CMakeFiles/logger.dir/src/log_config.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/logger.dir/src/log_config.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/river/Code/self_stl/craft/middleware/async_logger/src/log_config.cpp -o CMakeFiles/logger.dir/src/log_config.cpp.s
+
 CMakeFiles/logger.dir/src/log_worker.cpp.o: CMakeFiles/logger.dir/flags.make
 CMakeFiles/logger.dir/src/log_worker.cpp.o: ../src/log_worker.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/logger.dir/src/log_worker.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/logger.dir/src/log_worker.cpp.o"
 	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/logger.dir/src/log_worker.cpp.o -c /home/river/Code/self_stl/craft/middleware/async_logger/src/log_worker.cpp
 
 CMakeFiles/logger.dir/src/log_worker.cpp.i: cmake_force
@@ -72,15 +85,17 @@ CMakeFiles/logger.dir/src/log_worker.cpp.s: cmake_force
 
 # Object files for target logger
 logger_OBJECTS = \
+"CMakeFiles/logger.dir/src/log_config.cpp.o" \
 "CMakeFiles/logger.dir/src/log_worker.cpp.o"
 
 # External object files for target logger
 logger_EXTERNAL_OBJECTS =
 
+liblogger.a: CMakeFiles/logger.dir/src/log_config.cpp.o
 liblogger.a: CMakeFiles/logger.dir/src/log_worker.cpp.o
 liblogger.a: CMakeFiles/logger.dir/build.make
 liblogger.a: CMakeFiles/logger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library liblogger.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/river/Code/self_stl/craft/middleware/async_logger/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library liblogger.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/logger.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/logger.dir/link.txt --verbose=$(VERBOSE)
 
