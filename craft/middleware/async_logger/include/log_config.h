@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include "log_level.h"
 
 enum class LogDropStrategy {
     Drop,   // 丢弃日志
@@ -9,16 +10,23 @@ enum class LogDropStrategy {
 
 class LogConfig {
 public:
-    static LogConfig& get();
+    static LogConfig& GetInstance();
 
-    void setLogPath(const std::string& path);
-    void setStrategy(LogDropStrategy strategy);
-    void setConsoleOutput(bool enable);
+    void SetLogPath(const std::string& path);
+    void SetStrategy(LogDropStrategy strategy);
+    void SetConsoleOutput(bool enable);
+    void SetLogLevel(LogLevel level);
 
-    std::string logPath;
-    LogDropStrategy strategy = LogDropStrategy::Yield;
-    bool consoleOutput = true;
+    std::string GetLogPath() const;
+    bool GetConsoleOuputFlag() const;
+    LogLevel GetLogLevel() const;
+    LogDropStrategy GetLogDropStrategy() const;
 
 private:
     LogConfig() = default;
+
+    std::string logPath_;
+    LogDropStrategy strategy_ = LogDropStrategy::Yield;
+    bool consoleOutput_{true};
+    LogLevel level_{LogLevel::INFO};
 };

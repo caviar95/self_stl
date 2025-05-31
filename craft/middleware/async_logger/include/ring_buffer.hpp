@@ -3,29 +3,51 @@
 #include <atomic>
 #include <array>
 
-// MPSC（多生产单消费）环形缓冲区模板
-
 template<typename T, size_t N>
 class MPSCRingBuffer {
 public:
-    bool push(const T& item) {
-        size_t head, next;
-        do {
-            head = head_.load(std::memory_order_relaxed);
-            next = (head + 1) % N;
-            if (next == tail_.load(std::memory_order_acquire)) {
-                return false; // 满了
-            }
-        } while (!head_.compare_exchange_weak(head, next, std::memory_order_acq_rel));
+    // MPSCRingBuffer() : buffer_(new T[N]), capacity_(N) {
+    //     head_.store(0, std::memory_order_relaxed);
+    //     tail_.store(0, std::memory_order_relaxed);
+    // }
+
+    MPSCRingBuffer() : head_(0), tail_(0) {}
+
+    ~MPSCRingBuffer() {
+        // delete[] buffer_;
+    }
+
+    // buffer head for push, buffer tail for pop
+    bool Push(const T& item) {
+        // size_t head = head_.load(std::memory_order_relaxed);
+        // size_t next = (head + 1) % capacity_;
+
+        // if (next == tail_.load(std::memory_order_acquire)) {
+        //     return false;  // 队列已满
+        // }
+
+        // buffer_[head] = item;
+        // head_.store(next, std::memory_order_release);
+        // return true;
+
+        size_t head = head_.load(std::memory_order_relaxed);
+        size_t next = (head + 1) % N;
+
+        if (next == tail_.load(std::memory_order_acquire)) {
+            return false;
+        }
 
         buffer_[head] = item;
+        head_.store(next, std::memory_order_release);
+
         return true;
     }
 
-    bool pop(T& item) {
+    bool Pop(T& item) {
         size_t tail = tail_.load(std::memory_order_relaxed);
+
         if (tail == head_.load(std::memory_order_acquire)) {
-            return false; // 空
+            return false; // 队列为空
         }
 
         item = buffer_[tail];
@@ -33,12 +55,10 @@ public:
         return true;
     }
 
-    bool empty() const {
-        return head_.load() == tail_.load();
-    }
 
 private:
     std::array<T, N> buffer_;
-    std::atomic<size_t> head_{0};
-    std::atomic<size_t> tail_{0};
+    // const size_t capacity_;
+    std::atomic<size_t> head_;
+    std::atomic<size_t> tail_;
 };

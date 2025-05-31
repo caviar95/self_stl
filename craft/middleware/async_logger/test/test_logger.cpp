@@ -4,38 +4,35 @@
 
 #include <thread>
 
-void worker(int id) {
-    for (int i = 0; i < 3; ++i) {
-        LOG_INFO("Worker %d - iteration %d", id, i);
-    }
-}
+// void worker(int id) {
+//     for (int i = 0; i < 3; ++i) {
+//         LOG_INFO("Worker %d - iteration %d", id, i);
+//     }
+// }
 
 int main() {
-    auto& config = LogConfig::get();
-    config.setStrategy(LogDropStrategy::Block);   // 选 Drop / Block / Yield
-    config.setConsoleOutput(false);               // false = 写文件
-    config.setLogPath("app.log");
+    auto& cfg = LogConfig::GetInstance();
+    cfg.SetConsoleOutput(false);
+    cfg.SetLogPath("output.log");
+    cfg.SetStrategy(LogDropStrategy::Yield);
+    cfg.SetLogLevel(LogLevel::INFO);
 
-    LogWorker::GetInstance().start();
-
-
+    Logger::GetInstance().Init(LogLevel::INFO);
 
     std::thread t1([] {
-        for (int i = 0; i < 10000; ++i) {
-            LOG_INFO("Thread 1 log: %d", i);
-        }
+        for (int i = 0; i < 1000; ++i)
+            Logger::GetInstance().Log(LogLevel::INFO, "T1", "Logging from thread 1");
     });
 
     std::thread t2([] {
-        for (int i = 0; i < 10000; ++i) {
-            LOG_INFO("Thread 2 log: %d", i);
-        }
+        for (int i = 0; i < 1000; ++i)
+            Logger::GetInstance().Log(LogLevel::INFO, "T2", "Logging from thread 2");
     });
 
     t1.join();
     t2.join();
 
-    std::this_thread::sleep_for(std::chrono::seconds(2));
-    LogWorker::GetInstance().stop();
+    Logger::GetInstance().Stop();
+
     return 0;
 }

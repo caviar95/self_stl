@@ -7,7 +7,7 @@
 #include <vector>
 
 
-LogWorker::LogWorker() : running_(false) {}
+LogWorker::LogWorker() : running_(false), writer_(LogConfig::GetInstance().GetLogPath()) {}
 
 LogWorker::~LogWorker() {
     stop();
@@ -25,7 +25,7 @@ void LogWorker::start() {
 
 void LogWorker::stop() {
     running_ = false;
-    cv_.notify_all();
+    // cv_.notify_all();
 
     if (worker_.joinable()) {
         worker_.join();
@@ -41,23 +41,20 @@ void LogWorker::stop() {
 // }
 
 void LogWorker::submitLog(const std::string& msg) {
-    LogDropStrategy strategy = LogConfig::get().strategy;
+    LogDropStrategy strategy = LogConfig::GetInstance().GetLogDropStrategy();
 
     if (strategy == LogDropStrategy::Drop) {
-        ring_.push(msg); // 不管是否成功，直接返回
+        ring_.Push(msg); // 不管是否成功，直接返回
         return;
     }
 
-    if (strategy == LogDropStrategy::Block) {
-        while (!ring_.push(msg)) {
+    while (!ring_.Push(msg)) {
+        if (strategy == LogDropStrategy::Block) {
             std::this_thread::sleep_for(std::chrono::microseconds(10));
+        } else {
+            std::this_thread::yield();
         }
-        return;
-    }
-
-    // 默认 Yield
-    while (!ring_.push(msg)) {
-        std::this_thread::yield();
+        
     }
 }
 
@@ -79,39 +76,22 @@ void LogWorker::submitLog(const std::string& msg) {
 // }
 
 void LogWorker::run() {
-    std::ofstream outfile;
-    if (!LogConfig::get().consoleOutput) {
-        outfile.open(LogConfig::get().logPath, std::ios::app);
-    }
-
-    std::vector<std::string> batch;
-    batch.reserve(256);
-
+    std::string msg;
     while (running_) {
-        {
-            std::unique_lock<std::mutex> lock(mtx_);
-            cv_.wait_for(lock, std::chrono::milliseconds(100));
-        }
-
-        // 批量弹出日志
-        batch.clear();
-        std::string msg;
-        while (ring_.pop(msg)) {
-            batch.push_back(msg);
-        }
-
-        if (batch.empty()) continue;
-
-        for (auto& line : batch) {
-            if (LogConfig::get().consoleOutput) {
-                std::cout << line << std::endl;
-            } else {
-                outfile << line << std::endl;
+        if (ring_.Pop(msg)) {
+            buffer_.Add(msg);
+        } else {
+            auto logs = buffer_.CollectAndReset();
+            if (!logs.empty()) {
+                writer_.Write(logs);
             }
-        }
 
-        if (outfile) outfile.flush();
+            std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        }
     }
 
-    if (outfile) outfile.close();
+    auto remaining = buffer_.CollectAndReset();
+    if (!remaining.empty()) {
+        writer_.Write(remaining);
+    }
 }
