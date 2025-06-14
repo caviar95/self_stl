@@ -1,0 +1,22 @@
+{
+  "processes": [
+    {
+      "name": "worker1",
+      "exec": "/bin/echo",
+      "args": ["worker1 started"],
+      "work_dir": "/tmp",
+      "restart": true,
+      "register": {
+        "service_name": "worker1_service",
+        "port": 9001
+      }
+    },
+    {
+      "name": "worker2",
+      "exec": "/bin/echo",
+      "args": ["worker2 started"],
+      "work_dir": "/tmp",
+      "restart": false
+    }
+  ]
+}

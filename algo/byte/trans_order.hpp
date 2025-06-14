@@ -24,7 +24,7 @@ typename std::enable_if<std::is_integral<T>::value, T>::type ByteSwap(T value) {
     uint8_t *dst = reinterpret_cast<uint8_t*>(&result);
 
     for (size_t i = 0; i < sizeof(T); ++i) {
-        dst[i = src[sizeof(T) - 1 - i];
+        dst[i] = src[sizeof(T) - 1 - i];
     }
 
     return result;
@@ -40,3 +40,8 @@ T ToLittleEndian(T value) {
     return (GetSystemByteOrder() == ByteOrder::LittleEndian) ? value : ByteSwap(value);
 }
 
+/*
+ * C++20 provide more simple approch:
+ * #include <bit>
+ * if constexpr (std::endian::native == std::endian::little) {}
+ */

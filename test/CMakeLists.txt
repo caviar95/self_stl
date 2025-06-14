@@ -22,6 +22,7 @@ include_directories(${PROJECT_ROOT_DIR}/utility)
 include_directories(${PROJECT_ROOT_DIR}/design/mode/observer)
 include_directories(${PROJECT_ROOT_DIR}/design/mode/states)
 include_directories(${PROJECT_ROOT_DIR}/design/mode/command)
+include_directories(${PROJECT_ROOT_DIR}/algo/byte)
 
 set(THREAD_POOL_WITH_PRI_FILES 
     ${PROJECT_ROOT_DIR}/test/thread/test_thread.cpp
@@ -44,7 +45,9 @@ add_executable(stl_test
     # ${PROJECT_ROOT_DIR}/test/design/test_states_mode.cpp
     # ${PROJECT_ROOT_DIR}/test/design/test_command_mode.cpp
     # ${PROJECT_ROOT_DIR}/test/db/test_db.cpp
-    ${PROJECT_ROOT_DIR}/test/mem/test_allocator.cpp
+    # ${PROJECT_ROOT_DIR}/test/mem/test_allocator.cpp
+    
+    ${PROJECT_ROOT_DIR}/test/algo/byte/trans_order_test.cpp
     # ${THREAD_POOL_WITH_SCHED_FILES}
 )
 
