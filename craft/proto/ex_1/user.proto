@@ -1,0 +1,19 @@
+syntax = "proto3";
+package tutorial;
+
+// --------- 结构体（消息）定义 ---------
+message Person {
+  int32 id = 1;
+  string name = 2;
+  repeated string emails = 3;
+}
+
+message Empty {}
+
+// --------- 接口（服务）定义 ---------
+service AddressBookService {
+  // RPC 方法：传入 Person，返回一个空响应
+  rpc AddPerson(Person) returns (Empty);
+  // RPC 方法：获取所有 Person，流式返回
+  rpc ListPeople(Empty) returns (stream Person);
+}
