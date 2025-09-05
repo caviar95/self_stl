@@ -48,3 +48,14 @@ public:
         AutoRegistry<Base>::template RegisterType<Derived>();
     }
 };
+
+
+#0 in ?? () from /lib64/libgcc_s.so.1
+#1 in _Unwind_Backtrace () from /lib64/libgcc_s.so.1
+#2 in backtrace () from /lib64/libgcc_s.so.1
+#3 in CrashSignalProcess (signum=11)
+#4 <signal handler called>
+#5 in ?? ()
+#6 in std::_Function_base::~_Function_base
+#7 std::function<std::unique_ptr<ILogger, std::default_delete<ILogger>>()>::~function()
+#8 in __run_exit_handlers () from /lib64/libc.so.6
